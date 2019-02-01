@@ -24,7 +24,7 @@ namespace SolidWorkshop
             //_sqlConnection = new SqlConnection(_connectionString);
         }
 
-        public Entity Save(Entity entity)
+        public IEntity Save(IEntity entity)
         {
             try
             {
@@ -51,12 +51,12 @@ namespace SolidWorkshop
             }
         }
 
-        public List<Entity> ReadAll()
+        public List<IEntity> ReadAll()
         {
             _sqlConnection.Open();
             //perform Save
             _sqlConnection.Close();
-            return new List<Entity>();
+            return new List<IEntity>();
         }
 
     }
