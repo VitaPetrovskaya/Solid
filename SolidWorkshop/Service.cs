@@ -9,54 +9,21 @@ namespace SolidWorkshop
 {
     public class Service
     {
-        private readonly string _connectionString;
-        protected readonly SqlConnection _sqlConnection;
+        private readonly DataBase _dataBase;
 
-        public Service(string connectionString)
+        public Service(DataBase dataBase)
         {
-            _connectionString = connectionString;
-            //_sqlConnection = new SqlConnection(_connectionString);
+            _dataBase = dataBase;
         }
 
-        public Service()
+        public IEntity Save(IEntity entity, ISaver saver)
         {
-            _connectionString = "[connectionString]";
-            //_sqlConnection = new SqlConnection(_connectionString);
+            return saver.Save(_dataBase, entity);
         }
 
-        public IEntity Save(IEntity entity)
+        public List<IEntity> ReadAll(IReader reader)
         {
-            try
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    try
-                    {
-                        _sqlConnection.Open();
-                        //perform Save
-                        _sqlConnection.Close();
-                        return entity;
-                    }
-                    catch
-                    {
-                        if (i == 2)
-                            throw;
-                    }
-                }
-                throw new Exception("Ex");
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
-        public List<IEntity> ReadAll()
-        {
-            _sqlConnection.Open();
-            //perform Save
-            _sqlConnection.Close();
-            return new List<IEntity>();
+            return reader.ReadAll(_dataBase);
         }
 
     }
