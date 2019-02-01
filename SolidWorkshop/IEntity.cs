@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace SolidWorkshop
 {
-    public class Entity
+    public interface IEntity
     {
-        public int Id { get; set; }
+        int Id { get; set; }
 
-        public DateTime CreadedDate { get; set; }
+        DateTime CreadedDate { get; set; }
     }
 }
