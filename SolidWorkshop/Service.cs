@@ -9,11 +9,18 @@ namespace SolidWorkshop
 {
     public class Service
     {
-        private const string _connectionString = "[connectionString]";
+        private readonly string _connectionString;
         protected readonly SqlConnection _sqlConnection;
+
+        public Service(string connectionString)
+        {
+            _connectionString = connectionString;
+            //_sqlConnection = new SqlConnection(_connectionString);
+        }
 
         public Service()
         {
+            _connectionString = "[connectionString]";
             //_sqlConnection = new SqlConnection(_connectionString);
         }
 
